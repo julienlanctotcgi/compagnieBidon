@@ -1,0 +1,34 @@
+<div class="container p-3">
+    <div class="offset-3 col-6">
+      <div class="card">
+        <div class="card-header  font-weight-bold">
+          Sign Up Form
+        </div>
+        <div class="card card-body">
+          <form [formGroup]="formAuthentication" (submit)="submit()">
+            <div class="form-group">
+              <label for="email" [ngClass]="formAuthentication.controls['email'].invalid ? 'text-danger' : ''">Email Address</label>
+              <input id="email" formControlName="email" type="email" class="form-control" [ngClass]="formAuthentication.controls['email'].invalid ? 'is-invalid' : ''">
+              <label class="text-danger" *ngIf="formAuthentication.controls['email'].hasError('required')">
+                Email is Required!
+              </label>
+              <label class="text-danger" *ngIf="formAuthentication.controls['email'].hasError('email')">
+                Enter a valid email address!
+              </label>
+            </div>
+            <div class="form-group">
+              <label for="password" [ngClass]="formAuthentication.controls['password'].invalid ? 'text-danger' : ''">Password:</label>
+              <input id="password" formControlName="password" type="password" class="form-control" [ngClass]="formAuthentication.controls['password'].invalid ? 'is-invalid' : ''">
+               <label class="text-danger col" *ngIf="formAuthentication.controls['password'].hasError('required')">
+              Password is Required!
+            </label>
+            </div>
+            <div class="form-group">
+              <button [disabled]="formAuthentication.invalid" type="submit" class="btn btn-primary btn-block font-weight-bold">Sign
+                up</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
