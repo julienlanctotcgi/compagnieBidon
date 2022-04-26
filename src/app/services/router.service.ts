@@ -8,6 +8,10 @@ export class RouterService {
 
   constructor(private router : Router) { }
 
+
+  openLogin(){
+    this.router.navigate(['authentication']);
+  }
   openUserDetails() {
     this.router.navigate(['userdetails']);
   }

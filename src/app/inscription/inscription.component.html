@@ -22,18 +22,22 @@
                <label class="text-danger col" *ngIf="formInscription.controls['password'].hasError('required')">
               Password is Required!
             </label>
+            <div>
               <label class="col" [ngClass]="formInscription.controls['password'].hasError('required') || formInscription.controls['password'].hasError('minlength')  ? 'text-danger' : 'text-success'">
                 <i class="material-icons">{{ formInscription.controls['password'].hasError('required') ||
                   formInscription.controls['password'].hasError('minlength') ? 'cancel' :
                   'check_circle' }}</i>
                 Must be at least 8 characters!
               </label>
+            </div>
+            <div>
               <label class="col" [ngClass]="formInscription.controls['password'].hasError('required') || formInscription.controls['password'].hasError('hasNumber')  ? 'text-danger' : 'text-success'">
                 <i class="material-icons">{{ formInscription.controls['password'].hasError('required') ||
                   formInscription.controls['password'].hasError('hasNumber') ? 'cancel' :
                   'check_circle' }}</i>
                 Must contain at least 1 number!
               </label>
+            </div>
               <label class="col" [ngClass]="formInscription.controls['password'].hasError('required') || formInscription.controls['password'].hasError('hasCapitalCase')  ? 'text-danger' : 'text-success'">
                 <i class="material-icons">{{ formInscription.controls['password'].hasError('required') ||
                   formInscription.controls['password'].hasError('hasCapitalCase') ? 'cancel' :
@@ -45,6 +49,18 @@
                   formInscription.controls['password'].hasError('hasSmallCase') ? 'cancel' :
                   'check_circle' }}</i>
                 Must contain at least 1 Letter in Small Case!
+              </label>
+            </div>
+            <div class="form-group">
+              <label for="confirmPassword" [ngClass]="formInscription.controls['confirmPassword'].invalid ? 'text-danger' : ''">Confirm
+                Password:</label>
+              <input id="confirmPassword" formControlName="confirmPassword" type="password" class="form-control"
+                [ngClass]="formInscription.controls['confirmPassword'].invalid ? 'is-invalid' : ''">
+              <label class="text-danger" *ngIf="formInscription.controls['confirmPassword'].hasError('required')">
+                Password is Required!
+              </label>
+              <label class="text-danger" *ngIf="formInscription.controls['confirmPassword'].hasError('NoPassswordMatch')">
+                Password do not match
               </label>
             </div>
             <div class="form-group">

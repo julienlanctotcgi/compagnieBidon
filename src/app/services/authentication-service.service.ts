@@ -16,10 +16,17 @@ export class AuthenticationServiceService {
   getBearerToken() {
     return localStorage.getItem('bearerToken');
   }
- /* isUserAuthenticated(token : any): Promise<boolean> {
-    return this.httpClient.post('http://localhost:3000/auth/v1/isAuthenticated', {}, {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${token}`)
-    }).map((response) => response['isAuthenticated'])
-      .toPromise();
-  }*/
+
+  isLoggedIn(){
+    if(this.getBearerToken() != null)
+    {
+       return true;
+    }
+    return false;
+  }
+
+  clearToken()
+  {
+     localStorage.clear();
+  }
 }

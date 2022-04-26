@@ -1,6 +1,8 @@
+import { ThisReceiver } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationServiceService } from '../services/authentication-service.service';
+import { RouterService } from '../services/router.service';
 import { SignUpServiceService } from '../services/sign-up-service.service';
 
 
@@ -14,7 +16,7 @@ export class LoginComponent {
   
     public formAuthentication: FormGroup;
     public bearerToken: any;
-    constructor(private fb: FormBuilder, private authenticationService: AuthenticationServiceService,) {
+    constructor(private fb: FormBuilder, private authenticationService: AuthenticationServiceService, private router : RouterService) {
       this.formAuthentication = this.createSignupForm();
     }
   
@@ -43,6 +45,7 @@ export class LoginComponent {
         (res :any) => {
             this.bearerToken = res['token'];
             this.authenticationService.setBearerToken(this.bearerToken);
+            this.router.openUsers();
           },
           err => {
             if (err.status === 404) {

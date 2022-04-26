@@ -44,13 +44,17 @@ export class InscriptionComponent {
             Validators.minLength(8)
           ])
         ],
+        confirmPassword: [null, Validators.compose([Validators.required])]
       },
+      {
+        // check whether our password and confirm password match
+        validator: CustomValidators.passwordMatchValidator
+      }
     );
   }
 
   submit() {
     const user: any = { email: this.formInscription.value.email, password: this.formInscription.value.password };
-    console.log(user);
     this.signUpService.signUpUser(user).subscribe(
       (res :any) => {
           this.bearerToken = res['token'];
